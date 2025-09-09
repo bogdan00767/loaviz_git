@@ -1,3 +1,7 @@
+/* Добавить несколько студентов с похожими именами, переписать 
+поиск так, чтобы он происходил по неполному совпадению строки, 
+а также осуществить вывод всех верных вариантов вместо одного */
+
 #include <iostream>
 #include <string>
 #include <locale>
@@ -22,7 +26,7 @@ int main() {
     clearScreen();
     setlocale(LC_ALL, "rus");
 
-    const int numOfStudents = 3;
+    const int numOfStudents = 6;
     Student students[numOfStudents];
     
     students[0].firstName = "Ivan";
@@ -40,6 +44,21 @@ int main() {
     students[2].group = "23VP1";
     students[2].age = 20;
 
+    students[3].firstName = "Boto";
+    students[3].lastName = "Botov";
+    students[3].group = "23VP1";
+    students[3].age = 20;
+
+    students[4].firstName = "Botto";
+    students[4].lastName = "Botov";
+    students[4].group = "23VP1";
+    students[4].age = 20;
+
+    students[5].firstName = "Bottto";
+    students[5].lastName = "Botov";
+    students[5].group = "23VP1";
+    students[5].age = 20;
+
     for (int i = 0; i < numOfStudents; i++) {
         students[i].getInfo();
         std::cout << "\n";
@@ -53,10 +72,10 @@ int main() {
     
     bool found = false;
     for (int i = 0; i < numOfStudents; i++) {
-        if (students[i].firstName == searchName) {
+        if (students[i].firstName.find(searchName) != std::string::npos) {
             students[i].getInfo();
+            std::cout << "\n";
             found = true;
-            break;
         }
     }
     
